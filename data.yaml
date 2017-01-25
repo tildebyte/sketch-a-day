@@ -1,0 +1,21 @@
+current_date: 2017-01-25
+current_prompt: hand
+current_tool: an Onyx
+prompts: {animal: true, antique: true, appliance: true, architecture: true, bed: true,
+  bicycle: true, book: true, bottle: true, cabinet: true, ceramic: true, chair: true,
+  clothing: false, desk: true, dinner: true, dog: true, doorknob: true, eye: true,
+  folds: true, foot: true, fruit: true, glass: true, glasses: true, hand: false, hat: true,
+  instrument: true, keys: true, landmark: true, leaf: true, metallic: true, mouth: true,
+  mug: true, museum: true, portrait: true, purse: true, refrigerator: true, shoe: true,
+  table: true, telephone: true, tool: true, toothbrush: true, toy: true, tree: true,
+  view: true, watch: true, winter: true}
+tools:
+    - a 6H pencil
+    - a 6B pencil
+    - an HB pencil
+    - charcoal
+    - a fineliner
+    - a brush pen
+    - a marker
+    - a Palomino
+    - an Onyx
