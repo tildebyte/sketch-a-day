@@ -29,27 +29,27 @@ class MainPage(webapp2.RequestHandler):
             gcs_file.write(stream)
 
     def do_it(self, filename):
-        today = dt.date.today()
-        data = self.read_file(filename)
-        if (today - data['current_date']):
-            data['current_date'] = today
+        self.data = self.read_file(filename)
+        if (self.today - self.data['current_date']):
+            self.data['current_date'] = self.today
             prompts_list = [
-                prompt for prompt in data['prompts'] if data['prompts'][prompt]
+                prompt for prompt in self.data['prompts'] if self.data['prompts'][prompt]
             ]
-            data['current_prompt'] = random.choice(prompts_list)
-            data['current_tool'] = random.choice(data['tools'])
-            data['prompts'][data['current_prompt']] = False
-            self.write_file(filename, yaml.safe_dump(data))
-            return today, data['current_prompt'], data['current_tool']
+            self.data['current_prompt'] = random.choice(prompts_list)
+            self.data['current_tool'] = random.choice(self.data['tools'])
+            self.data['prompts'][self.data['current_prompt']] = False
+            self.write_file(filename, yaml.safe_dump(self.data))
+            # return data['current_prompt'], data['current_tool']
 
     def get(self):
         bucket_name = os.environ.get('BUCKET_NAME',
                                      ai.get_default_gcs_bucket_name())
         bucket = '/' + bucket_name
         filename = bucket + '/data.yaml'
+        self.today = dt.date.today()
         self.do_it(filename)
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('Prompt for {0}: {1}, using {2}.'.format(
-            today, data['current_prompt'], data['current_tool']))
+            self.today, self.data['current_prompt'], self.data['current_tool']))
 
 app = webapp2.WSGIApplication([('/', MainPage)], debug=True)
