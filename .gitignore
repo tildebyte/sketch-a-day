@@ -3,5 +3,3 @@ appengine-generated/
 *.pyc
 
 cloudstorage/
-
-gcs-demo\.py
