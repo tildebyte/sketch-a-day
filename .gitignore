@@ -3,3 +3,5 @@ appengine-generated/
 *.pyc
 
 cloudstorage/
+
+sketchaday\.html
