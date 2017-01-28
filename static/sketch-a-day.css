@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    color: hsl(36, 100%, 98%);
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Source Serif Pro', serif;
+    background-color: hsl(38, 42%, 12%);
+}
+
+#wrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#title-box {
+    color: hsl(39, 23%, 53%);
+    font-family: sans-serif;
+    font-size: 66px;
+}
+
+#text-box {
+    background-color: hsl(39, 66%, 35%);
+    font-size: 32px;
+}
+
+p {
+    font-family: serif;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: -9px -9px;
+    flex-flow: row wrap;
+}
+
+#highlight-date {
+    color: hsl(39, 23%, 68%);
+}
+
+#highlight {
+    background-color: hsl(39, 23%, 53%);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#link {
+    color: hsl(39, 66%, 35%);
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+#gh-mark {
+    height: 28px;
+}
