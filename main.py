@@ -57,7 +57,7 @@ class MainPage(webapp2.RequestHandler):
         # write history
         self.historyhtml = '<ul>'
         for item in sorted(self.history, reverse=True):
-            self.historyhtml += '<li>{0} &mdash; {1}</li>'.format(item, self.history[item])
+            self.historyhtml += '<li>{0} &mdash; {1}</li>\n'.format(item, self.history[item])
         self.historyhtml += '</ul>'
 
     def get(self):
