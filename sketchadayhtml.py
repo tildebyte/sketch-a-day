@@ -15,6 +15,7 @@ htmltext = '''<!DOCTYPE html>
             <div><a id="link" href="https://github.com/tildebyte/sketch-a-day" target="_blank">Source on GitHub</a></div>
             <a href="https://github.com/tildebyte/sketch-a-day target="_blank""><img id="gh-mark" src="GitHub-Mark-32px.png" alt="GitHub logo"></a>
         </div>
+        {3}
     </body>
 
 </html>

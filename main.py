@@ -53,6 +53,13 @@ class MainPage(webapp2.RequestHandler):
             self.writefile(datafilename, yaml.safe_dump(self.promptdata))
             self.writefile(hitoryfile, yaml.safe_dump(self.history))
 
+    def buildhistory():
+        # write history
+        self.historyhtml = '<ul>'
+        for item in sorted(self.history, reverse=True):
+            self.historyhtml += '<li>{0} &mdash; {1}</li>'.format(item, self.history[item])
+        self.historyhtml += '</ul>'
+
     def get(self):
         bucket_name = os.environ.get('BUCKET_NAME',
                                      ai.get_default_gcs_bucket_name())
@@ -61,12 +68,8 @@ class MainPage(webapp2.RequestHandler):
         historyfilename = bucket + '/history.yaml'
         self.today = dt.date.today()
         self.do_it(datafilename, historyfilename)
+        self.buildhistory()
         self.response.headers['Content-Type'] = 'text/html'
-        self.response.write(sketchadayhtml.htmltext.format(self.existing_date, self.existing_prompt, self.existing_tool))
-        # write history
-        self.response.write('<ul>')
-        for item in sorted(self.history, reverse=True):
-            self.response.write('<li>{0} &mdash; {1}</li>'.format(item, self.history[item]))
-        self.response.write('</ul>')
+        self.response.write(sketchadayhtml.htmltext.format(self.existing_date, self.existing_prompt, self.existing_tool, self.historyhtml))
 
 app = webapp2.WSGIApplication([('/', MainPage)], debug=True)
