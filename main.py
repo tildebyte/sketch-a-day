@@ -53,7 +53,7 @@ class MainPage(webapp2.RequestHandler):
             self.writefile(datafilename, yaml.safe_dump(self.promptdata))
             self.writefile(hitoryfile, yaml.safe_dump(self.history))
 
-    def buildhistory():
+    def buildhistory(self):
         # write history
         self.historyhtml = '<ul>'
         for item in sorted(self.history, reverse=True):
