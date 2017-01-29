@@ -1,5 +1,4 @@
-html_text = '''<!DOCTYPE html>
-<!DOCTYPE html>
+htmltext = '''<!DOCTYPE html>
 <html>
 
     <head>
