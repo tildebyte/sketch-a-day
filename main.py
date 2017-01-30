@@ -51,7 +51,7 @@ class MainPage(webapp2.RequestHandler):
             self.todaytool = random.choice(self.tools)
             self.prompts[self.todayprompt] = False
             self.writefile(datafilename, yaml.safe_dump(self.promptdata))
-            self.writefile(hitoryfile, yaml.safe_dump(self.history))
+            self.writefile(historyfile, yaml.safe_dump(self.history))
 
     def buildhistory(self):
         # write history

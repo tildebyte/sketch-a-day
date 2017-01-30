@@ -31,9 +31,11 @@ body {
 }
 
 #title-box {
-    color: var(--color-one);
+    color: var(--color-zerozero);
     font-family: sans-serif;
     font-size: 66px;
+    background: url("scribble.png") no-repeat center top;
+    background-size: contain;
 }
 
 #text-box {
@@ -41,7 +43,7 @@ body {
     font-size: 32px;
 }
 
-p {
+p.prompt {
     font-family: serif;
     display: flex;
     justify-content: center;
