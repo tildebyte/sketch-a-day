@@ -40,21 +40,23 @@ class MainPage(webapp2.RequestHandler):
         if (self.today - self.existing_date):
             self.prompts = self.promptdata['prompts']
             self.tools = self.promptdata['tools']
-            
+
             # Stash yesterday. We don't much care about the tool.
             self.history[self.existing_date] = self.existing_prompt
-            self.existing_date = self.today
             promptslist = [
                 prompt for prompt in self.prompts if self.prompts[prompt]
             ]
             self.todayprompt = random.choice(promptslist)
             self.todaytool = random.choice(self.tools)
             self.prompts[self.todayprompt] = False
+            self.promptdata['existing_date'] = self.today
+            self.promptdata['existing_prompt'] = self.todayprompt
+            self.promptdata['existing_tool'] = self.todaytool
+            self.historydata['history'] = self.history
             self.writefile(datafilename, yaml.safe_dump(self.promptdata))
-            self.writefile(historyfile, yaml.safe_dump(self.history))
+            self.writefile(historyfilename, yaml.safe_dump(self.historydata))
 
     def buildhistory(self):
-        # write history
         self.historyhtml = '<ul>'
         for item in sorted(self.history, reverse=True):
             self.historyhtml += '<li>{0} &mdash; {1}</li>\n'.format(item, self.history[item])
