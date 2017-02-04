@@ -19,20 +19,24 @@ gcs.set_default_retry_params(default_retry_parms)
 
 class MainPage(webapp2.RequestHandler):
 
-    def readfile(self, filename):
+    def read_file(self, filename):
         with gcs.open(filename, mode='r') as gcs_file:
             return yaml.safe_load(gcs_file)
 
-    def writefile(self, filename, stream):
+    def write_file(self, filename, stream):
         write_retry_params = gcs.RetryParams(backoff_factor=1.1)
         with gcs.open(filename, 'w',
                       content_type='text/plain',
                       retry_params=write_retry_params) as gcs_file:
             gcs_file.write(stream)
 
-    def do_it(self, datafilename, historyfilename):
-        self.promptdata = self.readfile(datafilename)
-        self.historydata = self.readfile(historyfilename)
+    def read_files(self, datafilename, historyfilename, galleryfilename):
+        self.promptdata = self.read_file(datafilename)
+        self.historydata = self.read_file(historyfilename)
+        with open(galleryfilename, mode='r') as stream:
+            self.gallerydata = yaml.safe_load(stream)
+
+    def do_it(self):
         self.existing_date = self.promptdata['existing_date']
         self.existing_prompt = self.promptdata['existing_prompt']
         self.existing_tool = self.promptdata['existing_tool']
@@ -56,7 +60,18 @@ class MainPage(webapp2.RequestHandler):
             self.writefile(datafilename, yaml.safe_dump(self.promptdata))
             self.writefile(historyfilename, yaml.safe_dump(self.historydata))
 
-    def buildhistory(self):
+    def build_gallery(self):
+        self.galleryhtml = ''
+        for item in self.gallerydata['galleryitems']:
+            self.galleryhtml += '''
+            <div class="item">
+                <a href="{0}" target="_blank">
+                    <div><img src="{1}" /></div>
+                    </a>
+                <p>{2}</p>
+            </div>'''.format(item['url'], item['thumbnail'], item['caption'])
+
+    def build_history(self):
         self.historyhtml = '<ul>'
         for item in sorted(self.history, reverse=True):
             self.historyhtml += '<li>{0} &mdash; {1}</li>\n'.format(item, self.history[item])
@@ -65,13 +80,19 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         bucket_name = os.environ.get('BUCKET_NAME',
                                      ai.get_default_gcs_bucket_name())
+        # bucket_name = '_ah/gcs/app_default_bucket'
         bucket = '/' + bucket_name
         datafilename = bucket + '/data.yaml'
         historyfilename = bucket + '/history.yaml'
+        galleryfilename = 'gallery_items.yaml'
         self.today = dt.date.today()
-        self.do_it(datafilename, historyfilename)
-        self.buildhistory()
+        self.read_files(datafilename, historyfilename, galleryfilename)
+        self.do_it()
+        self.build_gallery()
+        self.build_history()
         self.response.headers['Content-Type'] = 'text/html'
-        self.response.write(sketchadayhtml.htmltext.format(self.existing_date, self.existing_prompt, self.existing_tool, self.historyhtml))
+        self.response.write(sketchadayhtml.htmltext.format(self.existing_date, self.existing_prompt, self.existing_tool,
+                                                           self.galleryhtml, self.historyhtml))
+
 
 app = webapp2.WSGIApplication([('/', MainPage)], debug=True)

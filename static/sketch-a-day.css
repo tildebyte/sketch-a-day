@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Fira Sans;
+    src: url("https://fonts.googleapis.com/css?family=Fira+Sans:300");
+}
+
+@font-face {
+    font-family: Source Serif Pro;
+    src: url("https://fonts.googleapis.com/css?family=Source+Serif+Pro");
+}
+
 :root {
     /*background*/
     --color-three: hsl(40.2, 98.2%, 100%);
@@ -12,11 +22,10 @@
 }
 
 * {
-    box-sizing: border-box;
     text-align: center;
-    border-radius: 5px;
-    padding: 5px;
     color: var(--color-zerozero);
+    margin: 0rem;
+    padding: 0rem;
 }
 
 body {
@@ -25,64 +34,125 @@ body {
     background-color: var(--color-three);
 }
 
-#wrapper {
-    margin-left: 10%;
-    margin-right: 10%;
+.wrapper {
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
-#title-box {
-    color: var(--color-zerozero);
+.wrapper .title-box {
     font-family: sans-serif;
-    font-size: 66px;
+    font-size: 3.68rem;
     background: url("scribble.png") no-repeat center top;
     background-size: contain;
+    margin-bottom: 0.3rem;
 }
 
-#text-box {
+.wrapper .text-box {
     background-color: var(--color-two);
-    font-size: 32px;
+    font-size: 1.78rem;
+    padding: 0.3rem;
+    border-radius: 0.3125rem;
 }
 
-p.prompt {
+.wrapper .text-box p {
     font-family: serif;
     display: flex;
     justify-content: center;
     align-items: baseline;
-    margin: -9px -9px;
     flex-flow: row wrap;
+    margin: 0.1rem 0.1rem;
 }
 
-#highlight-date {
-    color: var(--color-one);
-}
-
-#highlight {
+.wrapper .text-box p span {
     background-color: var(--color-three);
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 0.3125rem;
+    margin-right: 0.3125rem;
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+    border-radius: 0.3125rem;
 }
 
-#link {
+.wrapper .text-box .highlight-date {
+    color: var(--color-one);
+    background-color: var(--color-two);
+}
+
+.wrapper a {
     color: var(--color-blue);
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 0.685rem;
 }
 
-#gh-mark {
-    height: 28px;
+.wrapper #gh-icon {
+    height: 1rem;
+    margin-bottom: 0.4rem;
+    background: url("GitHub-Mark-32px.png") no-repeat center top;
+    background-size: contain;
 }
 
-#history {
+
+/*GALLERY*/
+/*<div class="gallery">
+    <div class="item">
+        <a
+            <div><img
+        </a>
+        <p>*/
+
+.gallery {
+    padding: 0.4rem 0.4rem 0.4rem;
+    background-color: var(--color-two);
+    margin: 0.4rem 15% 1rem 15%;
+    border-radius: 0.3125rem;
+    display: flex;
+    flex-flow: row wrap;
+    /*justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;*/
+}
+
+.gallery .item {
+    height: 9rem;
+    width: 5rem;
+    margin: auto;
+}
+
+.gallery .item a div {
+    height: 5rem;
+    width: 5rem;
+    overflow: hidden;
+    border-radius: 8%;
+}
+
+.gallery .item a div img {
+    transform-origin: center center;
+    transform: translate(-45%, -30%) scale(0.75);
+    transition: all 0.6s ease;
+}
+
+.gallery .item a div:hover img {
+    transform: translate(-45%, -35%) scale(0.35);
+}
+
+.gallery .item p {
+    color: --color-zerozero;
+    text-align: left;
+    font: 0.6rem/1 serif;
+    margin: 0.3rem 0rem;
+}
+
+.history {
     display: flex;
     justify-content: center;
+    flex-direction: row;
 }
 
-ul {
+.history ul {
     list-style-type: none;
 }
 
-li {
+.history ul li {
     text-align: left;
-    padding: 0px;
+    padding: 0rem;
     color: var(--color-one);
 }

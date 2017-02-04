@@ -5,3 +5,5 @@ appengine-generated/
 cloudstorage/
 
 sketchaday\.html
+
+*.ipynb
