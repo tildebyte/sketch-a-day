@@ -36,7 +36,8 @@ class MainPage(webapp2.RequestHandler):
         with open(galleryfilename, mode='r') as stream:
             self.gallerydata = yaml.safe_load(stream)
 
-    def do_it(self):
+    def do_it(self, datafilename, historyfilename, galleryfilename):
+        self.read_files(datafilename, historyfilename, galleryfilename)
         self.existing_date = self.promptdata['existing_date']
         self.existing_prompt = self.promptdata['existing_prompt']
         self.existing_tool = self.promptdata['existing_tool']
@@ -57,8 +58,8 @@ class MainPage(webapp2.RequestHandler):
             self.promptdata['existing_prompt'] = self.todayprompt
             self.promptdata['existing_tool'] = self.todaytool
             self.historydata['history'] = self.history
-            self.writefile(datafilename, yaml.safe_dump(self.promptdata))
-            self.writefile(historyfilename, yaml.safe_dump(self.historydata))
+            self.write_file(datafilename, yaml.safe_dump(self.promptdata))
+            self.write_file(historyfilename, yaml.safe_dump(self.historydata))
 
     def build_gallery(self):
         self.galleryhtml = ''
@@ -86,8 +87,7 @@ class MainPage(webapp2.RequestHandler):
         historyfilename = bucket + '/history.yaml'
         galleryfilename = 'gallery_items.yaml'
         self.today = dt.date.today()
-        self.read_files(datafilename, historyfilename, galleryfilename)
-        self.do_it()
+        self.do_it(datafilename, historyfilename, galleryfilename)
         self.build_gallery()
         self.build_history()
         self.response.headers['Content-Type'] = 'text/html'
