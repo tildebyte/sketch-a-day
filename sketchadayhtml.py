@@ -17,6 +17,9 @@ htmltext = '''<!DOCTYPE html>
         <div class="gallery">
             {3}
         </div>
+        <a id="gae-icon href="https://console.cloud.google.com/appengine?" target="_blank">
+            Graciously hosted by Google App Engine<img src="https://ssl.gstatic.com/pantheon/images/favicon/appengine.png" />
+        </a>
         <div><a href="https://github.com/tildebyte/sketch-a-day" target="_blank">Source on GitHub</a></div>
         <div id="gh-icon">
             <a href="https://github.com/tildebyte/sketch-a-day" target="_blank"></a>

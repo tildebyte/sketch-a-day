@@ -34,6 +34,10 @@ body {
     background-color: var(--color-three);
 }
 
+a {
+    text-decoration: none;
+}
+
 body p {
     font-size: 1.4rem;
     font-family: sans-serif;
@@ -96,6 +100,14 @@ body a {
     font-size: 0.685rem;
 }
 
+#gae-icon {
+    height: 1.2rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.1rem;
+    background: url("appengine.png") no-repeat center top;
+    background-size: contain;
+}
+
 #gh-icon {
     height: 0.7rem;
     margin-top: 0.2rem;
@@ -103,7 +115,6 @@ body a {
     background: url("GitHub-Mark-32px.png") no-repeat center top;
     background-size: contain;
 }
-
 
 /*GALLERY*/
 /*<div class="gallery">
