@@ -34,9 +34,21 @@ body {
     background-color: var(--color-three);
 }
 
+body p {
+    font-size: 1.4rem;
+    font-family: sans-serif;
+}
+
+body a {
+    font-family: sans-serif;
+    color: var(--color-blue);
+    font-size: 0.685rem;
+}
+
 .wrapper {
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-right: 4%;
+    margin-bottom: 1rem;
+    margin-left: 4%;
 }
 
 .wrapper .title-box {
@@ -55,6 +67,7 @@ body {
 }
 
 .wrapper .text-box p {
+    font-size: 2rem;
     font-family: serif;
     display: flex;
     justify-content: center;
@@ -83,9 +96,9 @@ body {
     font-size: 0.685rem;
 }
 
-.wrapper #gh-icon {
-    height: 1rem;
-    margin-bottom: 0.4rem;
+#gh-icon {
+    height: 0.7rem;
+    margin-bottom: 0.8rem;
     background: url("GitHub-Mark-32px.png") no-repeat center top;
     background-size: contain;
 }
@@ -100,21 +113,25 @@ body {
         <p>*/
 
 .gallery {
-    padding: 0.4rem 0.4rem 0.4rem;
+    padding: 0.4rem;
     background-color: var(--color-two);
-    margin: 0.4rem 15% 1rem 15%;
+    margin: 0.1rem 4% 1rem 4%;
     border-radius: 0.3125rem;
     display: flex;
     flex-flow: row wrap;
-    /*justify-content: space-around;
+    /*justify-content: space-around;*/
     align-items: flex-start;
-    align-content: flex-start;*/
+    align-content: flex-start;
 }
 
 .gallery .item {
-    height: 9rem;
-    width: 5rem;
-    margin: auto;
+    height: 5rem;
+    width: 10rem;
+    margin: 0.3rem;
+}
+
+.gallery .item a {
+    display:block;
 }
 
 .gallery .item a div {
@@ -122,6 +139,7 @@ body {
     width: 5rem;
     overflow: hidden;
     border-radius: 8%;
+    float: left;
 }
 
 .gallery .item a div img {
@@ -137,8 +155,10 @@ body {
 .gallery .item p {
     color: --color-zerozero;
     text-align: left;
-    font: 0.6rem/1 serif;
-    margin: 0.3rem 0rem;
+    font: 0.75rem/1 serif;
+    margin-left: 5rem;
+    padding-top: 0.1rem;
+    padding-left: 0.3rem;
 }
 
 .history {
