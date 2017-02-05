@@ -98,6 +98,7 @@ body a {
 
 #gh-icon {
     height: 0.7rem;
+    margin-top: 0.2rem;
     margin-bottom: 0.8rem;
     background: url("GitHub-Mark-32px.png") no-repeat center top;
     background-size: contain;
@@ -126,7 +127,7 @@ body a {
 
 .gallery .item {
     height: 5rem;
-    width: 10rem;
+    width: 12rem;
     margin: 0.3rem;
 }
 
@@ -155,9 +156,9 @@ body a {
 .gallery .item p {
     color: --color-zerozero;
     text-align: left;
-    font: 0.75rem/1 serif;
-    margin-left: 5rem;
-    padding-top: 0.1rem;
+    font: 0.89rem/1 serif;
+    margin-left: 5.1rem;
+    padding-top: 0.15rem;
     padding-left: 0.3rem;
 }
 
