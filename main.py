@@ -85,7 +85,7 @@ class MainPage(webapp2.RequestHandler):
         bucket = '/' + bucket_name
         datafilename = bucket + '/data.yaml'
         historyfilename = bucket + '/history.yaml'
-        galleryfilename = 'gallery_items.yaml'
+        galleryfilename = 'static/gallery_items.yaml'
         self.today = dt.date.today()
         self.do_it(datafilename, historyfilename, galleryfilename)
         self.build_gallery()
