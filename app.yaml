@@ -7,10 +7,9 @@ handlers:
   mime_type: text/css
   static_files: static/\1
   upload: static/(.*\.css)
-- url: /(.*\.ico)
-  mime_type: image/x-icon
-  static_files: static/\1
-  upload: static/(.*\.ico)
+- url: /favicon\.png
+  static_files: static/favicon.png
+  upload: static/favicon\.png
 - url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
   static_files: static/\1
   upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png))

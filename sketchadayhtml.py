@@ -3,6 +3,8 @@ htmltext = '''<!DOCTYPE html>
 
     <head>
         <link rel="stylesheet" type="text/css" href="sketch-a-day.css">
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="apple-touch-icon-precomposed"  type="image/png" href="favicon.png" />
     </head>
 
     <body>
