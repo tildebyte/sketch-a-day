@@ -1,3 +1,4 @@
+''' .'''
 import os
 import random
 import datetime as dt
@@ -67,10 +68,9 @@ class MainPage(webapp2.RequestHandler):
             self.galleryhtml += '''
             <div class="item">
                 <a href="{0}" target="_blank">
-                    <div><img src="{1}" /></div>
-                    </a>
-                <p>{2}</p>
-            </div>'''.format(item['url'], item['thumbnail'], item['caption'])
+                    <p>{1}</p>
+                </a>
+            </div>'''.format(item['url'], item['caption'])
 
     def build_history(self):
         self.historyhtml = '<ul>'
@@ -81,7 +81,6 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         bucket_name = os.environ.get('BUCKET_NAME',
                                      ai.get_default_gcs_bucket_name())
-        # bucket_name = '_ah/gcs/app_default_bucket'
         bucket = '/' + bucket_name
         datafilename = bucket + '/data.yaml'
         historyfilename = bucket + '/history.yaml'

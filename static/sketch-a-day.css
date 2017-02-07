@@ -116,13 +116,8 @@ body a {
     background-size: contain;
 }
 
+
 /*GALLERY*/
-/*<div class="gallery">
-    <div class="item">
-        <a
-            <div><img
-        </a>
-        <p>*/
 
 .gallery {
     padding: 0.4rem;
@@ -131,46 +126,35 @@ body a {
     border-radius: 0.3125rem;
     display: flex;
     flex-flow: row wrap;
-    /*justify-content: space-around;*/
-    align-items: flex-start;
-    align-content: flex-start;
+    justify-content: center;
 }
 
 .gallery .item {
-    height: 5rem;
-    width: 12rem;
+    height: 2rem;
+    width: 15rem;
     margin: 0.3rem;
+    border-color: var(--color-one);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.3125rem;
+    padding: 0.4rem;
+    padding-bottom: 0.1rem;
+    transition: transform 0.6s ease;
 }
 
-.gallery .item a {
-    display:block;
+.gallery .item:hover {
+    transform: scale(0.75);
 }
 
-.gallery .item a div {
-    height: 5rem;
-    width: 5rem;
-    overflow: hidden;
-    border-radius: 8%;
-    float: left;
-}
-
-.gallery .item a div img {
-    transform-origin: center center;
-    transform: translate(-45%, -30%) scale(0.75);
-    transition: all 0.6s ease;
-}
-
-.gallery .item a div:hover img {
-    transform: translate(-45%, -35%) scale(0.35);
-}
-
-.gallery .item p {
+.gallery .item a p {
     color: --color-zerozero;
     text-align: left;
     font: 0.89rem/1 serif;
-    margin-left: 5.1rem;
-    padding-top: 0.15rem;
-    padding-left: 0.3rem;
+    transition: color 0.6s ease;
+}
+
+.gallery .item a p:hover {
+    color: hsl(199.6, 50%, 41%);
 }
 
 .history {
