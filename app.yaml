@@ -1,6 +1,4 @@
-runtime: python27
-api_version: 1
-threadsafe: true
+runtime: python37
 
 handlers:
 - url: /(.*\.css)
@@ -14,4 +12,4 @@ handlers:
   static_files: static/\1
   upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png))
 - url: /.*
-  script: main.app
+  script: auto

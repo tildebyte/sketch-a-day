@@ -1,35 +1,36 @@
-''' .'''
-import os
-import random
+# [START gae_python37_app]
 import datetime as dt
+import random
+import os
 
 import yaml
-import webapp2
-import cloudstorage as gcs
+
+from flask import Flask
+from google.cloud import storage
 
 import sketchadayhtml
 
 from google.appengine.api import app_identity as ai
 
-default_retry_parms = gcs.RetryParams(initial_delay=0.2,
-                                      max_delay=5.0,
-                                      backoff_factor=2,
-                                      max_retry_period=15)
-gcs.set_default_retry_params(default_retry_parms)
+gcsc = storage.Client()
 
 
-class MainPage(webapp2.RequestHandler):
+app = Flask(__name__)
+
+
+@app.route('/')
+def main():
 
     def read_file(self, filename):
-        with gcs.open(filename, mode='r') as gcs_file:
-            return yaml.safe_load(gcs_file)
+        with gcsc.open(filename, mode='r') as gcsc_file:
+            return yaml.safe_load(gcsc_file)
 
     def write_file(self, filename, stream):
-        write_retry_params = gcs.RetryParams(backoff_factor=1.1)
-        with gcs.open(filename, 'w',
-                      content_type='text/plain',
-                      retry_params=write_retry_params) as gcs_file:
-            gcs_file.write(stream)
+        write_retry_params = gcsc.RetryParams(backoff_factor=1.1)
+        with gcsc.open(filename, 'w',
+                       content_type='text/plain',
+                       retry_params=write_retry_params) as gcsc_file:
+            gcsc_file.write(stream)
 
     def read_files(self, datafilename, historyfilename, galleryfilename):
         self.promptdata = self.read_file(datafilename)
@@ -75,7 +76,7 @@ class MainPage(webapp2.RequestHandler):
     def build_history(self):
         self.historyhtml = '<ul>'
         for item in sorted(self.history, reverse=True):
-            self.historyhtml += '<li>{0} &mdash; {1}</li>\n'.format(item, self.history[item])
+            self.historyhtml += f'<li>{item}&mdash;{self.history[item]}</li>\n'
         self.historyhtml += '</ul>'
 
     def get(self):
@@ -90,8 +91,16 @@ class MainPage(webapp2.RequestHandler):
         self.build_gallery()
         self.build_history()
         self.response.headers['Content-Type'] = 'text/html'
-        self.response.write(sketchadayhtml.htmltext.format(self.existing_date, self.existing_prompt, self.existing_tool,
-                                                           self.galleryhtml, self.historyhtml))
+        self.response.write(sketchadayhtml.htmltext.format(self.existing_date,
+                                                           self.existing_prompt,
+                                                           self.existing_tool,
+                                                           self.galleryhtml,
+                                                           self.historyhtml))
 
 
-app = webapp2.WSGIApplication([('/', MainPage)], debug=True)
+if __name__ == '__main__':
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True)
+# [END gae_python37_app]
